@@ -5,9 +5,7 @@ items = JSON.parse(IO.read('../quotes.json'))
 
 texts = []
 
-
 items.each do |item|
-	#p item
 	t = item['quoteText'].strip.gsub(/\.+$/, '.')
 	unless t[-1].match(/[\.\?\!]/)
 		t = t + '.'
@@ -20,23 +18,12 @@ items.each do |item|
 	end
 	
 	line = "#{t} #{a}"
+  line.gsub!('é', 'e')
 
-	if line.count('.') < 2
-		#p line
-	end
-
-	
-	
 	texts << line
-	#if text.length > 300
-	#	texts << text
-	#	text = ''
-	#end
-
-	#text += line
 end
 
-IO.write('out.txt', texts.sort.join("\n"))
+IO.write('klavogonki.txt', texts.sort.join("\n"))
 
 
 
